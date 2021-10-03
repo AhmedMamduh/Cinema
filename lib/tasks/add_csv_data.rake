@@ -3,9 +3,12 @@ require 'csv'
 namespace :add_csv_data do
   task movies_data: :environment do
     CSV.foreach("movies.csv", headers: true) do |row|
-      Movie.find_or_create_by({ name: row["Movie"], description: row["Description"], year: row["Year"],
-        director: row["Director"], actor: row["Actor"], filming_location: row["Filming location"],
-        country: row["Country"]})
+      actor_id = Actor.find_by_name(row["Actor"])&.id
+      country = Movie.countries[row["Country"].downcase]
+      movie = Movie.find_or_create_by({ name: row["Movie"], description: row["Description"], year: row["Year"],
+        director: row["Director"], filming_location: row["Filming location"],
+        country: country})
+      movie.movies_actors.find_or_create_by(actor_id: actor_id)
     end
   end
 

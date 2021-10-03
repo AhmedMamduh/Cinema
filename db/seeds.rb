@@ -5,3 +5,9 @@ User.create(name: 'Suzan Something', email: "Suzan@gmail.com", password: 123456,
 User.create(name: 'Axel Ontheway', email: "Axel@gmail.com", password: 123456, password_confirmation: 123456)
 User.create(name: 'Mack Boe', email: "Mack@gmail.com", password: 123456, password_confirmation: 123456)
 User.create(name: 'Rik van der Kroon', email: "Rik@gmail.com", password: 123456, password_confirmation: 123456)
+
+Actor.find_or_create_by(name: 'Nicolas Cage')
+Actor.find_or_create_by(name: 'Leonardo Di Caprio')
+Actor.find_or_create_by(name: 'Giovani Ribisi')
+Actor.find_or_create_by(name: 'Joseph Gordon Levitt')
+Actor.find_or_create_by(name: 'Ellen Page')
