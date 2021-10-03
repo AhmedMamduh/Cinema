@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
 
   # GET /movies or /movies.json
   def index
-    @movies = Movie.all
+    @movies = params[:search].present? ? Movie.search_actor(params[:search].downcase) : Movie.all
   end
 
   # GET /movies/1 or /movies/1.json
@@ -64,6 +64,6 @@ class MoviesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def movie_params
-      params.require(:movie).permit(:name, :description, :year, :director, :actor, :filming_location, :country)
+      params.require(:movie).permit(:name, :description, :year, :director, :actor, :filming_location, :country, :search)
     end
 end
